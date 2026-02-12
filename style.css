@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* ─── Base Theme ─── */
+@theme {
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-primary: #60A5FA;
+  --color-lavender: #A78BFA;
+  --color-peach: #FDBA74;
+  --color-cream: #FFFBEB;
+  --color-card-blue: #EFF6FF;
+  --color-card-lavender: #F5F3FF;
+  --color-card-peach: #FFF7ED;
+  --color-card-gray: #F9FAFB;
+  --color-text-dark: #374151;
+  --color-text-medium: #6B7280;
+}
+
+/* ─── Global ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #374151;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── MIRA Brand Accent ─── */
+.mira-accent {
+  font-weight: 700;
+  background: linear-gradient(135deg, #60A5FA, #A78BFA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Bento Card Base ─── */
+.bento-card {
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.07);
+}
+
+/* ─── Primary Button ─── */
+.btn-primary {
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  background: linear-gradient(135deg, #60A5FA, #A78BFA);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.35);
+}
+
+/* ─── Secondary Button ─── */
+.btn-secondary {
+  height: 52px;
+  padding: 0 32px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 16px;
+  background: white;
+  color: #374151;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  border-color: #60A5FA;
+  color: #60A5FA;
+  box-shadow: 0 8px 20px rgba(96, 165, 250, 0.12);
+}
+
+/* ─── Phrase Chip ─── */
+.phrase-chip {
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: white;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.phrase-chip:hover {
+  border-color: #60A5FA;
+  color: #60A5FA;
+  background: #EFF6FF;
+}
+
+.phrase-chip.active {
+  border-color: #60A5FA;
+  color: #60A5FA;
+  background: #EFF6FF;
+}
+
+/* ─── 3D Viewer Container ─── */
+.mira-viewer {
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #EFF6FF 0%, #F5F3FF 100%);
+  position: relative;
+}
+
+.mira-viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ─── Loading State ─── */
+.mira-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #6B7280;
+  font-size: 15px;
+}
+
+.mira-loading .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #EFF6FF;
+  border-top-color: #60A5FA;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Section Spacing ─── */
+.section-spacing {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* ─── Playback Controls ─── */
+.control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #6B7280;
+}
+
+.control-btn:hover {
+  border-color: #60A5FA;
+  color: #60A5FA;
+}
+
+.control-btn.active {
+  background: linear-gradient(135deg, #60A5FA, #A78BFA);
+  color: white;
+  border-color: transparent;
+}
+
+/* ─── Speed Selector ─── */
+.speed-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6B7280;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.speed-btn.active {
+  background: #EFF6FF;
+  color: #60A5FA;
+}
+
+/* ─── Fade in on scroll ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Input field ─── */
+.mira-input {
+  width: 100%;
+  height: 56px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  padding: 0 24px;
+  font-size: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #374151;
+  background: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.mira-input:focus {
+  border-color: #60A5FA;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.mira-input::placeholder {
+  color: #9CA3AF;
+}
+
+/* ─── Status message ─── */
+.status-message {
+  font-size: 14px;
+  font-weight: 500;
+  color: #60A5FA;
+  min-height: 22px;
+  transition: opacity 0.3s ease;
+}
+
+/* ─── Nav ─── */
+.nav-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ─── Responsive Overrides ─── */
+@media (max-width: 640px) {
+  .bento-card {
+    padding: 28px;
+    border-radius: 20px;
+  }
+
+  .section-spacing {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+}
