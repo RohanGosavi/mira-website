@@ -94,10 +94,12 @@ function createScene(
 // ─── Load MIRA Signing Avatar ───
 // Every gesture is pre-authored and deterministic.
 // The avatar is a linguistic interface, not a character.
+const MODEL_PATH = `${import.meta.env.BASE_URL}mira-character.glb`;
+
 function loadAvatar(scene, callback) {
   const loader = new GLTFLoader();
   loader.load(
-    "/mira-character.glb",
+    MODEL_PATH,
     (gltf) => {
       const model = gltf.scene;
 
