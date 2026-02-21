@@ -27,21 +27,26 @@ const state = {
 // ─── Three.js Scene Setup ───
 function createScene(
   container,
-  { cameraY = 1.2, cameraZ = 2.5, fov = 35 } = {},
+  { cameraY = 1.2, cameraZ = 2.5, fov = 35, dark = false } = {},
 ) {
   const width = container.clientWidth;
   const height = container.clientHeight;
 
   const scene = new THREE.Scene();
 
-  // Soft gradient background — neutral, non-distracting
+  // Background gradient — dark (hero) or light (demo)
   const canvas = document.createElement("canvas");
   canvas.width = 2;
   canvas.height = 256;
   const ctx = canvas.getContext("2d");
   const gradient = ctx.createLinearGradient(0, 0, 0, 256);
-  gradient.addColorStop(0, "#EFF6FF");
-  gradient.addColorStop(1, "#F5F3FF");
+  if (dark) {
+    gradient.addColorStop(0, "#141428");
+    gradient.addColorStop(1, "#1A1410");
+  } else {
+    gradient.addColorStop(0, "#F5F5F5");
+    gradient.addColorStop(1, "#FAFAFA");
+  }
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, 2, 256);
   const bgTexture = new THREE.CanvasTexture(canvas);
@@ -55,25 +60,34 @@ function createScene(
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.toneMappingExposure = dark ? 1.4 : 1.2;
 
   // Clear loading state and attach canvas
   container.innerHTML = "";
   container.appendChild(renderer.domElement);
 
-  // Lighting — clear and even for gesture visibility
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+  // Lighting — warm saffron tones for dark mode, neutral for light
+  const ambientLight = new THREE.AmbientLight(
+    dark ? 0xfff0e0 : 0xffffff,
+    dark ? 0.6 : 0.9,
+  );
   scene.add(ambientLight);
 
-  const mainLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  const mainLight = new THREE.DirectionalLight(0xffffff, dark ? 1.2 : 1.0);
   mainLight.position.set(3, 5, 4);
   scene.add(mainLight);
 
-  const fillLight = new THREE.DirectionalLight(0xe0e7ff, 0.5);
+  const fillLight = new THREE.DirectionalLight(
+    dark ? 0xf27a1a : 0xe0e7ff,
+    dark ? 0.3 : 0.5,
+  );
   fillLight.position.set(-3, 3, -2);
   scene.add(fillLight);
 
-  const rimLight = new THREE.DirectionalLight(0xfde68a, 0.2);
+  const rimLight = new THREE.DirectionalLight(
+    dark ? 0xf9730c : 0xfde68a,
+    dark ? 0.4 : 0.2,
+  );
   rimLight.position.set(0, 2, -5);
   scene.add(rimLight);
 
@@ -147,6 +161,7 @@ function initHeroScene() {
     cameraY: 1.0,
     cameraZ: 5,
     fov: 30,
+    dark: true,
   });
 
   // Adjust orbit target to center on full body
