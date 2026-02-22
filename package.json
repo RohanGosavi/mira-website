@@ -1,11 +1,8 @@
 {
   "name": "mira",
   "version": "1.0.0",
-  "homepage": "https://RohanGosavi.github.io",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -21,7 +18,6 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "gh-pages": "^6.3.0",
     "tailwindcss": "^4.1.18"
   }
 }
